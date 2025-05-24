@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #1B1B1B;
+    color: #eef8ce;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background-image:
+    url(img/bg.png),
+    repeating-linear-gradient(
+        to right, transparent 0 500px, #73814B33 500px 501px
+    );
+    background-size: 100%;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Keeps it full-screen */
+    width: 100vw;  /* Ensures full width */
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form {
+    background: transparent;
+    border-radius: 30px;
+    padding: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    width: 800px; /* Fixed width */
+}
+#contact .sign {
+    font-family: 'Bimbo', sans-serif;
+    font-size: 10em;
+}
+@media screen and (max-width: 100px){
+    #contact .sign {
+        font-size: 2em;
+}
+}
+
+
+
+h1 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.contact-reference {
+    margin-bottom: 20px; /* Space below the reference section */
+    text-align: center; /* Center the text */
+    color: #eef8ce; /* Match the text color with the body */
+}
+
+.contact-reference a {
+    color: #4CAF50; /* Change the link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.contact-reference a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+input, textarea {
+    width: 500px;
+    padding: 15px; /* Adjusted for better proportions */
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+.image-container {
+    flex: 1; /* Allows the image container to take available space */
+    display: flex;
+    justify-content: right; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+
+.image-container img {
+    max-width: 100%; /* Ensures the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: adds rounded corners */
+}
+
+.banner button{
+    all: unset;
+    border: 1px solid #afaeae55;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(
+        to bottom, #eee1, transparent, #eee1
+    );
+    cursor: pointer;
+    transition: 0.5s;
+}
+.banner button:hover{
+    background-color: #c691e6;
+    color: #040018;
+    box-shadow: 0 0 50px #c691e6;
+}

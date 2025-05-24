@@ -1,0 +1,63 @@
+[
+    {
+        "id": 1,
+        "name":" Kiwi per Kg",
+        "price": 200,
+        "image": "image/1.png"
+    },
+    {
+        "id": 2,
+        "name":" Watermelon per Kg",
+        "price": 250,
+        "image": "image/2.png"
+    },
+    {
+        "id": 3,
+        "name":" Pomegranate per Kg",
+        "price": 90,
+        "image": "image/3.png"
+    },
+    {
+        "id": 4,
+        "name":" Read globe per Kg",
+        "price": 200,
+        "image": "image/4.png"
+    },
+    {
+        "id": 5,
+        "name":" Papaya per Kg",
+        "price": 300,
+        "image": "image/5.png"
+    },
+    {
+        "id": 6,
+        "name":" Apple per Kg",
+        "price": 200,
+        "image": "image/6.png"
+    },
+    {
+        "id": 7,
+        "name":"Orange per Kg ",
+        "price": 200,
+        "image": "image/7.png"
+    },
+    {
+        "id": 8,
+        "name":" Read berry per Kg",
+        "price": 200,
+        "image": "image/8.png"
+    },
+    {
+        "id": 9,
+        "name":" Pineapple per Kg",
+        "price": 200,
+        "image": "image/9.png"
+    },
+    {
+        "id": 10,
+        "name":"Dragon fruit per Kg ",
+        "price": 200,
+        "image": "image/10.png"
+    }
+
+]

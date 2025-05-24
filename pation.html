@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Fruits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .fruit-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .fruit-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            width: 150px;
+            text-align: center;
+            background-color: white;
+        }
+        .fruit-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+        #cart {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Order Your Fruits</h1>
+
+    <div class="fruit-list">
+        <div class="fruit-item">
+            <img src="https://via.placeholder.com/150" alt="Apple">
+            <h3>Apple</h3>
+            <p>$1.00 each</p>
+            <button class="add-to-cart" onclick="addToCart('Apple', 1)">Add to Cart</button>
+        </div>
+        <div class="fruit-item">
+            <img src="https://via.placeholder.com/150" alt="Banana">
+            <h3>Banana</h3>
+            <p>$0.50 each</p>
+            <button class="add-to-cart" onclick="addToCart('Banana', 0.5)">Add to Cart</button>
+        </div>
+        <div class="fruit-item">
+            <img src="https://via.placeholder.com/150" alt="Orange">
+            <h3>Orange</h3>
+            <p>$0.75 each</p>
+            <button class="add-to-cart" onclick="addToCart('Orange', 0.75)">Add to Cart</button>
+        </div>
+        <div class="fruit-item">
+            <img src="https://via.placeholder.com/150" alt="Grapes">
+            <h3>Grapes</h3>
+            <p>$2.00 per bunch</p>
+            <button class="add-to-cart" onclick="addToCart('Grapes', 2)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: $0.00</p>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(fruit, price) {
+            cart.push({ fruit, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalDisplay = document.getElementById('total');
+
+            // Clear previous items
+            cartItems.innerHTML = '';
+
+            // Add items to cart
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.fruit} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+
+            totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
