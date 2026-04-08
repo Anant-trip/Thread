@@ -1,0 +1,334 @@
+/* ============================================
+   INDEX/MAIN PAGE STYLES
+   Landing page with banner, 3D butterfly, and sections
+   ============================================ */
+
+/* ============================================
+   1. BANNER SECTION
+   ============================================ */
+#banner {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#banner .title {
+    color: var(--accent-green-alt);
+    font-size: 11em;
+    font-family: var(--font-display);
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+}
+
+#banner .title::before {
+    content: attr(data-before);
+    position: absolute;
+    top: 0.5em;
+    inset: 0.66em 0 0 0;
+    z-index: -1;
+    color: #445022;
+}
+
+/* ============================================
+   2. INTRO SECTION
+   ============================================ */
+#intro {
+    padding-top: 100px;
+}
+
+#intro .content-fit {
+    display: flex;
+    gap: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#intro .number {
+    font-family: var(--font-display);
+    font-size: 15em;
+    font-weight: bold;
+    color: #445022;
+}
+
+#intro .title {
+    font-family: var(--font-display);
+    font-size: 5em;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+#intro .content {
+    flex: 1;
+}
+
+#intro .content p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 20px 0;
+}
+
+/* ============================================
+   3. DESCRIPTION SECTION
+   ============================================ */
+#description {
+    padding: 100px 0;
+}
+
+#description .content-fit {
+    padding-right: 30%;
+}
+
+#description .number {
+    font-family: var(--font-display);
+    font-size: 5em;
+    font-weight: bold;
+    color: #445022;
+    margin-bottom: 20px;
+}
+
+#description .title {
+    font-family: var(--font-display);
+    font-size: 7em;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+}
+
+#description .content {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+/* ============================================
+   4. CONTACT SECTION
+   ============================================ */
+#contact {
+    padding: 100px 0;
+}
+
+#contact .content-fit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#contact .title {
+    font-family: var(--font-display);
+    font-size: 7em;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+}
+
+#contact table {
+    width: min(800px, 90vw);
+    padding-top: 2em;
+    font-size: 2em;
+    margin: auto;
+}
+
+#contact table td {
+    padding-block: 0.5em;
+    border-bottom: 1px dashed #445022;
+}
+
+#contact table td:nth-child(1) {
+    text-align: left;
+    font-weight: 500;
+    padding-right: 20px;
+}
+
+#contact table td:nth-child(2) {
+    text-align: right;
+    font-weight: 200;
+}
+
+#contact .sign {
+    font-family: var(--font-signature);
+    font-size: 10em;
+    margin-top: 40px;
+    color: #445022;
+}
+
+/* ============================================
+   5. DECORATIVE ELEMENTS
+   ============================================ */
+.section .decorate {
+    position: absolute;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.section .content-fit {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   6. 3D CONTAINER POSITIONING
+   ============================================ */
+#container3D {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* ============================================
+   7. SCROLLING ANIMATIONS
+   ============================================ */
+.section {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   8. RESPONSIVE - TABLET
+   ============================================ */
+@media screen and (max-width: 1023px) {
+    #banner .title {
+        font-size: 5em;
+    }
+
+    #intro .content-fit {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    #intro .number {
+        font-size: 8em;
+    }
+
+    #intro .title {
+        font-size: 3em;
+    }
+
+    #description .content-fit {
+        padding-right: 0;
+    }
+
+    #description .number {
+        font-size: 3em;
+    }
+
+    #description .title {
+        font-size: 4em;
+    }
+
+    #contact table {
+        font-size: 1.2em;
+    }
+
+    #contact .sign {
+        font-size: 5em;
+    }
+}
+
+/* ============================================
+   9. RESPONSIVE - MOBILE
+   ============================================ */
+@media screen and (max-width: 767px) {
+    #banner {
+        min-height: auto;
+        padding: 100px 20px;
+    }
+
+    #banner .title {
+        font-size: 3em;
+    }
+
+    #intro {
+        padding-top: 50px;
+    }
+
+    #intro .number {
+        font-size: 5em;
+    }
+
+    #intro .title {
+        font-size: 2em;
+    }
+
+    .section .number {
+        font-size: 3em;
+    }
+
+    .section .content-fit .title {
+        font-size: 1.5em;
+    }
+
+    #description .content-fit {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    #description .number {
+        font-size: 2em;
+    }
+
+    #description .title {
+        font-size: 2.5em;
+    }
+
+    #contact table {
+        font-size: 0.8em;
+        width: 95vw;
+    }
+
+    #contact .sign {
+        font-size: 2em;
+    }
+
+    #container3D {
+        position: absolute;
+        height: 100vh;
+    }
+}
+
+/* ============================================
+   10. RESPONSIVE - SMALL MOBILE
+   ============================================ */
+@media screen and (max-width: 480px) {
+    #banner {
+        padding: 80px 15px;
+    }
+
+    #banner .title {
+        font-size: 2em;
+    }
+
+    #intro .number {
+        font-size: 3em;
+    }
+
+    #intro .title {
+        font-size: 1.5em;
+    }
+
+    #description .number {
+        font-size: 1.5em;
+    }
+
+    #description .title {
+        font-size: 1.5em;
+    }
+
+    #contact table {
+        font-size: 0.6em;
+    }
+
+    #contact .sign {
+        font-size: 1.5em;
+    }
+
+    .section .content-fit {
+        padding-block: 2em 1em;
+    }
+}

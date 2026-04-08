@@ -1,0 +1,518 @@
+/* ============================================
+   SHOPPING CART PAGE STYLES
+   Product carousel, cart list, and checkout
+   ============================================ */
+
+/* ============================================
+   1. BANNER/HERO SECTION
+   ============================================ */
+.banner {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+}
+
+/* ============================================
+   2. 3D CAROUSEL SLIDER
+   ============================================ */
+.banner .slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
+}
+
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   3. BANNER CONTENT
+   ============================================ */
+.banner .content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.banner .content h1 {
+    font-family: var(--font-display);
+    font-size: 10em;
+    line-height: 1em;
+    color: var(--text-primary);
+    position: relative;
+    margin: 0;
+}
+
+.banner .content h1::after {
+    position: absolute;
+    inset: 0;
+    content: attr(data-content);
+    z-index: 2;
+    -webkit-text-stroke: 2px var(--accent-green);
+    color: transparent;
+}
+
+.banner .content .author {
+    font-family: var(--font-body);
+    text-align: right;
+    max-width: 200px;
+    color: var(--text-secondary);
+}
+
+.banner .content h2 {
+    font-size: 2em;
+    color: var(--accent-green);
+}
+
+/* ============================================
+   4. CART CONTAINER
+   ============================================ */
+.cart-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 60vh;
+}
+
+.cart-container h2 {
+    font-size: 2.5em;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--accent-green);
+    padding-bottom: 15px;
+}
+
+/* ============================================
+   5. CART ITEMS TABLE
+   ============================================ */
+.cart-items {
+    background: var(--bg-light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table thead {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.cart-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* ============================================
+   6. PRODUCT DETAILS IN CART
+   ============================================ */
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+.product-details h4 {
+    margin: 0 0 5px 0;
+    color: var(--text-primary);
+}
+
+.product-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+/* ============================================
+   7. QUANTITY CONTROLS
+   ============================================ */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: fit-content;
+}
+
+.quantity-control button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--text-primary);
+    transition: background-color 0.2s;
+}
+
+.quantity-control button:hover {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* ============================================
+   8. REMOVE BUTTON
+   ============================================ */
+.remove-btn {
+    background-color: #ffebee;
+    color: var(--accent-red);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+/* ============================================
+   9. CART SUMMARY
+   ============================================ */
+.cart-summary {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.summary-box {
+    background: var(--bg-light);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.summary-row.total {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--accent-green);
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+}
+
+/* ============================================
+   10. CHECKOUT BUTTON
+   ============================================ */
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-green-alt));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+    margin-top: 20px;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.checkout-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   11. EMPTY CART MESSAGE
+   ============================================ */
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-cart p {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.continue-shopping {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--accent-green);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.continue-shopping:hover {
+    background: var(--accent-green-alt);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   12. RESPONSIVE - TABLET
+   ============================================ */
+@media screen and (max-width: 1023px) {
+    .banner .slider {
+        width: 160px;
+        height: 200px;
+        left: calc(50% - 80px);
+    }
+
+    .banner .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(300px);
+    }
+
+    .banner .content h1 {
+        font-size: 6em;
+    }
+
+    .cart-table td,
+    .cart-table th {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+
+    .product-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cart-summary {
+        flex-direction: column;
+    }
+
+    .summary-box {
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   13. RESPONSIVE - MOBILE
+   ============================================ */
+@media screen and (max-width: 767px) {
+    .banner {
+        height: 60vh;
+    }
+
+    .banner .slider {
+        width: 100px;
+        height: 150px;
+        left: calc(50% - 50px);
+        top: 5%;
+    }
+
+    .banner .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+
+    .banner .content {
+        padding-bottom: 30px;
+    }
+
+    .banner .content h1 {
+        font-size: 3em;
+    }
+
+    .cart-container {
+        margin: 40px auto;
+    }
+
+    .cart-container h2 {
+        font-size: 1.8em;
+    }
+
+    /* Mobile table restructuring */
+    .cart-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .cart-table thead {
+        display: none;
+    }
+
+    .cart-table tbody,
+    .cart-table tr,
+    .cart-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .cart-table tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .cart-table td {
+        border-bottom: none;
+        padding: 10px;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .cart-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    .cart-summary {
+        flex-direction: column-reverse;
+    }
+
+    .summary-box {
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   14. RESPONSIVE - SMALL MOBILE
+   ============================================ */
+@media screen and (max-width: 480px) {
+    .banner {
+        height: 50vh;
+    }
+
+    .banner .slider {
+        width: 80px;
+        height: 120px;
+        left: calc(50% - 40px);
+    }
+
+    .banner .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(100px);
+    }
+
+    .banner .content h1 {
+        font-size: 2em;
+    }
+
+    .cart-container {
+        padding: 0 10px;
+    }
+
+    .cart-container h2 {
+        font-size: 1.4em;
+    }
+
+    .product-info {
+        gap: 10px;
+    }
+
+    .product-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .quantity-control input {
+        width: 40px;
+        font-size: 0.9em;
+    }
+
+    .cart-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .summary-box {
+        padding: 15px;
+    }
+
+    .summary-row {
+        font-size: 0.9em;
+    }
+
+    .checkout-btn {
+        padding: 12px;
+        font-size: 1em;
+    }
+}

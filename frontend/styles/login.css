@@ -1,0 +1,490 @@
+/* ============================================
+   LOGIN PAGE STYLES
+   Authentication page with form validation
+   ============================================ */
+
+/* ============================================
+   1. LOGIN PAGE CONTAINER
+   ============================================ */
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+    padding: 20px;
+}
+
+/* ============================================
+   2. LOGIN FORM WRAPPER
+   ============================================ */
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--bg-light);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 50px 40px;
+    animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   3. LOGIN FORM TITLE
+   ============================================ */
+.login-container h1 {
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.login-container p {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    margin-bottom: 30px;
+}
+
+/* ============================================
+   4. FORM GROUPS
+   ============================================ */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+/* ============================================
+   5. INPUT FIELDS WITH VALIDATION
+   ============================================ */
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    background-color: #fff;
+}
+
+/* ✅ VALID INPUT */
+.form-group input:valid {
+    border-color: var(--accent-green);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%234CAF50" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+/* ❌ INVALID INPUT */
+.form-group input:invalid {
+    border-color: var(--accent-red);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f44336" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.form-group input:invalid:focus {
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+/* ============================================
+   6. PASSWORD VISIBILITY TOGGLE
+   ============================================ */
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: var(--accent-green);
+}
+
+/* ============================================
+   7. REMEMBER ME CHECKBOX
+   ============================================ */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    color: var(--text-secondary);
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    accent-color: var(--accent-green);
+}
+
+/* ============================================
+   8. FORGOT PASSWORD
+   ============================================ */
+.forgot-password {
+    text-align: right;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s ease;
+}
+
+.forgot-password a:hover {
+    color: var(--accent-green-alt);
+    text-decoration: underline;
+}
+
+/* ============================================
+   9. SUBMIT BUTTON
+   ============================================ */
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-green-alt));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.form-group button:active {
+    transform: translateY(0);
+}
+
+.form-group button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================
+   10. AUTH LINKS (SIGN UP / BACK TO LOGIN)
+   ============================================ */
+.auth-links {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.auth-links p {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    margin: 0;
+}
+
+.auth-links a {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.auth-links a:hover {
+    color: var(--accent-green-alt);
+    text-decoration: underline;
+}
+
+/* ============================================
+   11. DIVIDER
+   ============================================ */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.divider span {
+    padding: 0 15px;
+}
+
+/* ============================================
+   12. SOCIAL LOGIN BUTTONS
+   ============================================ */
+.social-login {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    color: var(--text-primary);
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.social-btn:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+/* ============================================
+   13. ERROR MESSAGE
+   ============================================ */
+.error-message {
+    background-color: #ffebee;
+    color: var(--accent-red);
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    border-left: 4px solid var(--accent-red);
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* ============================================
+   14. SUCCESS MESSAGE
+   ============================================ */
+.success-message {
+    background-color: #e8f5e9;
+    color: var(--accent-green);
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    border-left: 4px solid var(--accent-green);
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: slideInUp 0.3s ease;
+}
+
+/* ============================================
+   15. LOADING SPINNER
+   ============================================ */
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(76, 175, 80, 0.2);
+    border-top-color: var(--accent-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   16. RESPONSIVE - TABLET
+   ============================================ */
+@media screen and (max-width: 1023px) {
+    .login-container {
+        max-width: 400px;
+        padding: 40px 30px;
+    }
+
+    .login-container h1 {
+        font-size: 1.8em;
+    }
+
+    .form-group input {
+        padding: 11px 12px;
+        font-size: 0.95em;
+    }
+}
+
+/* ============================================
+   17. RESPONSIVE - MOBILE
+   ============================================ */
+@media screen and (max-width: 767px) {
+    #loginPage {
+        padding: 15px;
+    }
+
+    .login-container {
+        max-width: 100%;
+        padding: 35px 25px;
+    }
+
+    .login-container h1 {
+        font-size: 1.6em;
+    }
+
+    .login-container p {
+        font-size: 0.9em;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group input {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .social-login {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .social-btn {
+        padding: 11px;
+    }
+}
+
+/* ============================================
+   18. RESPONSIVE - SMALL MOBILE
+   ============================================ */
+@media screen and (max-width: 480px) {
+    .login-container {
+        padding: 25px 15px;
+    }
+
+    .login-container h1 {
+        font-size: 1.4em;
+        margin-bottom: 8px;
+    }
+
+    .login-container p {
+        font-size: 0.85em;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .form-group button {
+        padding: 11px;
+        font-size: 0.9em;
+    }
+
+    .checkbox-group {
+        font-size: 0.9em;
+    }
+
+    .auth-links {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .auth-links p {
+        font-size: 0.85em;
+    }
+
+    .divider span {
+        padding: 0 10px;
+        font-size: 0.85em;
+    }
+
+    .error-message,
+    .success-message {
+        font-size: 0.85em;
+        padding: 10px 12px;
+    }
+}

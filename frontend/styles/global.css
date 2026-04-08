@@ -1,0 +1,664 @@
+/* ============================================
+   GLOBAL STYLESHEET - CONSOLIDATED
+   All base styles, resets, and common components
+   ============================================ */
+
+/* ============================================
+   1. FONT IMPORTS
+   ============================================ */
+@import url('https://fonts.cdnfonts.com/css/devil-breeze');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/bimbo');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ============================================
+   2. CSS RESET & BASE STYLES
+   ============================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Remove scrollbar */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+/* ============================================
+   3. COLOR VARIABLES & THEME
+   ============================================ */
+:root {
+    /* Primary Colors */
+    --bg-dark: #1B1B1B;
+    --bg-darker: #1E1E20;
+    --bg-card: #1C1C1E;
+    --bg-semi: #1B1B1B11;
+    
+    /* Text Colors */
+    --text-primary: #eef8ce;
+    --text-secondary: #717171;
+    --text-light: #fff;
+    
+    /* Accent Colors */
+    --accent-green: #4CAF50;
+    --accent-green-dark: #45a049;
+    --accent-purple: #c691e6;
+    --accent-green-alt: #d1ff48;
+    
+    /* Status Colors */
+    --error-red: #a20e0e;
+    --success-green: #4CAF50;
+    
+    /* Neutral Shades */
+    --neutral-light: #afaeae55;
+    --grid-color: #73814B33;
+    --border-color: #71717188;
+    
+    /* Typography */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Montserrat', sans-serif;
+    --font-display: 'devil breeze', sans-serif;
+    --font-signature: 'Bimbo', sans-serif;
+    --font-mono: 'Inter', sans-serif;
+}
+
+/* ============================================
+   4. BODY & PAGE STRUCTURE
+   ============================================ */
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 14px;
+    background-image:
+        url(/assets/images/bg.png),
+        repeating-linear-gradient(
+            to right, 
+            transparent 0 500px, 
+            var(--grid-color) 500px 501px
+        );
+    background-size: 100%;
+    line-height: 1.6;
+}
+
+body.login-page {
+    background-color: var(--bg-darker);
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ============================================
+   5. HEADINGS & TEXT
+   ============================================ */
+h1 {
+    font-weight: 500;
+    color: var(--text-light);
+    font-size: x-large;
+    margin-bottom: 9px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+p {
+    margin: 0;
+}
+
+p a {
+    border-bottom: 1px solid var(--text-secondary);
+    color: var(--accent-green);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   6. FORMS & INPUTS
+   ============================================ */
+form {
+    display: flex;
+    margin: auto;
+    margin-block: 30px;
+    width: min(300px, 90vw);
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+form input,
+form button {
+    all: unset;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: var(--bg-card);
+    box-shadow: 0 10px 30px #0005;
+    border: 1px solid var(--border-color);
+    transition: background-image 0.5s, opacity 0.5s, border 0.5s;
+}
+
+form * {
+    width: 100% !important;
+}
+
+form input {
+    color: var(--text-light);
+    padding: 15px;
+    margin: 10px 0;
+}
+
+form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+form button {
+    cursor: pointer;
+    width: 100% !important;
+    padding: 10px;
+}
+
+form button[type="submit"] {
+    background-color: var(--text-light);
+    color: var(--bg-card);
+}
+
+/* Input validation styles */
+input:invalid:not(:placeholder-shown) {
+    border-color: var(--error-red);
+    background-image: url(/assets/images/checked_red.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+}
+
+input:valid:not(:placeholder-shown) {
+    background-image: url(/assets/images/checked_green.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+}
+
+input:invalid:not(:placeholder-shown) + p {
+    color: var(--error-red);
+    font-size: small;
+    text-align: left;
+}
+
+input:invalid ~ button[type="submit"] {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+textarea {
+    width: 500px;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    color: var(--text-light);
+}
+
+/* ============================================
+   7. BUTTONS
+   ============================================ */
+button {
+    all: unset;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-green-dark);
+}
+
+.btn-secondary {
+    border: 1px solid var(--neutral-light);
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(
+        to bottom, #eee1, transparent, #eee1
+    );
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-purple);
+    color: #040018;
+    box-shadow: 0 0 50px var(--accent-purple);
+}
+
+/* ============================================
+   8. LAYOUT COMPONENTS
+   ============================================ */
+.section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-fit {
+    width: min(1200px, 90vw);
+    margin: auto;
+    min-height: 100vh;
+    position: relative;
+    padding-block: 10em;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ============================================
+   9. HEADER/NAVIGATION
+   ============================================ */
+header {
+    padding-block: 1em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    background-color: var(--bg-semi);
+    background-image: repeating-linear-gradient(
+        to right, transparent 0 500px, #eee1 500px 501px
+    );
+}
+
+header .content-fit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: unset !important;
+    padding-block: unset !important;
+}
+
+header .content-fit nav ul {
+    display: flex;
+    gap: 2em;
+}
+
+.nav__links.open {
+    transform: translateY(0);
+}
+
+.nav__links a {
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.nav__links a:hover {
+    color: var(--accent-green);
+}
+
+.nav__links .btn {
+    padding: 0;
+    background-color: transparent;
+}
+
+.nav__btns {
+    display: none;
+}
+
+/* ============================================
+   10. CONTACT FORM STYLES
+   ============================================ */
+.contact-form {
+    background: transparent;
+    border-radius: 30px;
+    padding: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    width: 800px;
+}
+
+.contact-reference {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.contact-reference a {
+    color: var(--accent-green);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.contact-reference a:hover {
+    text-decoration: underline;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ============================================
+   11. LOGIN PAGE SPECIFIC
+   ============================================ */
+body::before,
+body::after {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    content: '';
+    background-color: var(--text-secondary);
+    top: 0;
+    right: 0;
+    border-radius: 10px 30px 600px 100px;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+body::after {
+    top: unset;
+    right: unset;
+    bottom: 0;
+    left: 0;
+    border-radius: 100px 30px 600px 100px;
+}
+
+/* Logo Styles */
+.logo img {
+    width: 200px;
+    opacity: 0.4;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background-color: var(--bg-card);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px #0004;
+    margin-bottom: 40px;
+}
+
+/* Wrapper Styles */
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    background: transparent;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.wrapper:hover {
+    animation: animate 1s linear infinite;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+}
+
+.wrapper.active .form-wrapper.sign-in {
+    transform: translateY(-450px);
+}
+
+.wrapper .form-wrapper.sign-up {
+    position: absolute;
+    top: 450px;
+    left: 0;
+}
+
+.wrapper.active .form-wrapper.sign-up {
+    transform: translateY(-450px);
+}
+
+/* ============================================
+   12. 3D CONTAINER
+   ============================================ */
+#container3D {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* ============================================
+   13. ANIMATIONS
+   ============================================ */
+@keyframes animate {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+/* ============================================
+   14. DIVIDER / SEPARATOR
+   ============================================ */
+.or {
+    position: relative;
+    margin: 20px 0;
+}
+
+.or::before {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    content: '';
+    left: 0;
+    top: 50%;
+    background-image: linear-gradient(
+        to right,
+        var(--border-color) 0 40%,
+        transparent 40% 60%,
+        var(--border-color) 60%
+    );
+}
+
+/* ============================================
+   15. UTILITY CLASSES
+   ============================================ */
+.text-white {
+    color: var(--text-light);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   16. RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet: 1024px and below */
+@media screen and (max-width: 1023px) {
+    .content-fit {
+        width: 90vw;
+        padding-block: 5em;
+    }
+
+    #banner .title {
+        font-size: 5em;
+    }
+
+    #intro .content-fit {
+        flex-direction: column;
+    }
+
+    .contact-form {
+        width: 90vw;
+        padding: 40px 20px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}
+
+/* Mobile: 767px and below */
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 12px;
+    }
+
+    .banner .slider {
+        width: 100px;
+        height: 150px;
+        left: calc(50% - 50px);
+    }
+
+    .banner .slider .item {
+        transform:
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+
+    .banner .content h1 {
+        font-size: 5em;
+    }
+
+    .contact-form {
+        width: 95vw;
+        padding: 30px 15px;
+        border-radius: 15px;
+    }
+
+    form {
+        width: 95vw;
+    }
+
+    input, textarea {
+        width: 100% !important;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100% !important;
+        padding: 12px;
+    }
+
+    header .content-fit nav ul {
+        gap: 1em;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: large;
+    }
+}
+
+/* Small Mobile: 480px and below */
+@media screen and (max-width: 480px) {
+    .banner .slider {
+        width: 80px;
+        height: 120px;
+        left: calc(50% - 40px);
+    }
+
+    .section {
+        min-height: unset;
+        height: auto;
+    }
+
+    .content-fit {
+        min-height: unset;
+        padding-block: 3em 1em;
+    }
+
+    #container3D {
+        position: absolute;
+    }
+
+    button {
+        padding: 10px 15px;
+    }
+}

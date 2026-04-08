@@ -1,64 +1,86 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const port = 3000;
+require('dotenv').config();
 
 const app = express();
-app.use(express.static(__dirname));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://127.0.0.1:27017/loginform', {
+// ============================================
+// MIDDLEWARE
+// ============================================
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from frontend (CSS, JS, images, etc.)
+app.use(express.static(path.join(__dirname, 'frontend')));
+
+// ============================================
+// DATABASE CONNECTION
+// ============================================
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
 db.once('open', () => {
-    console.log("MongoDB connection successful");
+    console.log("✅ MongoDB connection successful");
 });
 
-const userSchema = new mongoose.Schema({
-    Username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    Password: {
-        type: String,
-        required: true
-    }
+db.on('error', (error) => {
+    console.error('❌ MongoDB connection error:', error);
 });
 
-const Post = mongoose.model("Post", userSchema);
+// ============================================
+// ROUTES - Static Pages
+// ============================================
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login')); // Ensure 'login' is the correct path
+    res.sendFile(path.join(__dirname, 'frontend/pages/index.html'));
 });
 
-app.post('/post', async (req, res) => {
-    const { Username, email, Password } = req.body; // Include 'email' as well
-    const user = new Post({ // Use 'Post' instead of 'user'
-        Username,
-        email, // Add the email field
-        Password
-    });
-
-    try {
-        await user.save();
-        console.log(user);
-        res.send("Form submission successful");
-    } catch (err) {
-        console.error('Error saving user:', err);
-        res.status(500).send("Error saving data");
-    }
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/pages/login.html'));
 });
 
+app.get('/cart', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/pages/cart.html'));
+});
+
+// ============================================
+// ROUTES - API (Add these after creating route files)
+// ============================================
+
+// Uncomment after creating route files
+// app.use('/api/auth', require('./backend/routes/auth'));
+// app.use('/api/products', require('./backend/routes/products'));
+// app.use('/api/cart', require('./backend/routes/cart'));
+// app.use('/api/orders', require('./backend/routes/orders'));
+
+// ============================================
+// ERROR HANDLERS
+// ============================================
+
+// 404 Handler
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not Found' });
+});
+
+// Error Handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// ============================================
+// START SERVER
+// ============================================
 app.listen(port, () => {
-    console.log("Server started on port", port);
+    console.log(`🚀 Server running on http://localhost:${port}`);
+    console.log(`📍 Main page: http://localhost:${port}/`);
+    console.log(`🔐 Login: http://localhost:${port}/login`);
+    console.log(`🛒 Cart: http://localhost:${port}/cart`);
 });
+
+module.exports = app;

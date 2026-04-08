@@ -1,22 +1,25 @@
 {
+  "name": "ecommerce-3d-app",
+  "version": "1.0.0",
+  "description": "E-Commerce Application with 3D Animated Butterfly",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "express": "^4.21.0",
     "mongoose": "^8.7.0",
-    "nodemon": "^3.1.7",
+    
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
-    "path": "^0.12.7"
+    "dotenv": "^16.0.0"
   },
-  "name": "nodemon",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   },
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
