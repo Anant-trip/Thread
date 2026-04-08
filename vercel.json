@@ -1,0 +1,41 @@
+{
+  "headers": [
+    {
+      "source": "/assets/models/:filename*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:filename*.glb",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "model/gltf-binary"
+        }
+      ]
+    },
+    {
+      "source": "/:filename*.gltf",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Type",
+          "value": "model/gltf+json"
+        }
+      ]
+    }
+  ],
+  "buildCommand": "npm run build",
+  "framework": "vite"
+}

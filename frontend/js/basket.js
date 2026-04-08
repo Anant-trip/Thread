@@ -1,4 +1,5 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
+import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 import { gsap } from 'https://cdn.skypack.dev/gsap';
 
@@ -13,22 +14,60 @@ camera.position.z = 13;
 const scene = new THREE.Scene();
 let bee;
 let mixer;
-const loader = new GLTFLoader();
-loader.load('supermarket_fruit.glb',
+
+// ✅ OPTIMIZED: Setup GLTF Loader with Draco compression
+const setupOptimizedLoader = () => {
+    const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+    loader.setDRACOLoader(dracoLoader);
+    return loader;
+};
+
+const loader = setupOptimizedLoader();
+
+// ✅ Show loading spinner
+const container3D = document.getElementById('container3D');
+const spinnerOverlay = document.createElement('div');
+spinnerOverlay.id = 'spinner-overlay-basket';
+spinnerOverlay.innerHTML = `
+    <div class="spinner-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; z-index: 100;">
+        <div class="spinner" style="width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+        <p style="color: #fff; margin-top: 15px; font-family: Arial;">Loading 3D Model...</p>
+    </div>
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+`;
+container3D.appendChild(spinnerOverlay);
+
+// ✅ Load model with compression support
+loader.load(
+    '/assets/models/supermarket_fruit.glb',
     function (gltf) {
+        spinnerOverlay.remove();
         bee = gltf.scene;
         scene.add(bee);
 
         mixer = new THREE.AnimationMixer(bee);
         mixer.clipAction(gltf.animations[0]).play();
         modelMove();
+        console.log('✅ Fruit model loaded with Draco compression!');
     },
-    function (xhr) {},
-    function (error) {}
+    function (xhr) {
+        const progress = (xhr.loaded / xhr.total * 100);
+        console.log(`📥 Loading: ${progress.toFixed(2)}%`);
+    },
+    function (error) {
+        spinnerOverlay.remove();
+        console.error('❌ Error loading fruit model:', error);
+    }
 );
-const renderer = new THREE.WebGLRenderer({alpha: true});
+
+const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true, precision: 'mediump'});
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('container3D').appendChild(renderer.domElement);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container3D.appendChild(renderer.domElement);
 
 // light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
