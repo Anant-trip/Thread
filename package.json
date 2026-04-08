@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "build": "echo \"Building application...\"",
+    "build": "mkdir -p dist && cp -r frontend/* dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
